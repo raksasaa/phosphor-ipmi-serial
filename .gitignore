@@ -6,3 +6,4 @@ subprojects/googletest-*/
 *.o
 *.d
 compile_commands.json
+.sisyphus

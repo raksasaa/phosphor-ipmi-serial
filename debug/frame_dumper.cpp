@@ -69,10 +69,22 @@ void FrameDumper::dumpSent(const std::vector<uint8_t>& raw, const std::string& l
     dumpBytes(raw.data(), raw.size(), label);
 }
 
-void FrameDumper::dumpMessage(const message::Message& msg, const std::string& direction)
+void FrameDumper::dumpMessage(const message::Message& msg,
+                                const std::string& direction)
 {
-    if (!enabled) return;
-    lg2::info("FrameDumper::dumpMessage called: DIR={DIRECTION}", "DIRECTION", direction.c_str());
+    if (!enabled)
+        return;
+
+    lg2::info("IPMI Message Trace ({DIRECTION})", "DIRECTION", direction);
+    lg2::info("  NetFn : {NETFN}", "NETFN", lg2::hex, msg.netFn);
+    lg2::info("  LUN   : {LUN}", "LUN", lg2::hex, msg.lun);
+    lg2::info("  Seq   : {SEQ}", "SEQ", lg2::hex, msg.seqNum);
+    lg2::info("  Cmd   : {CMD}", "CMD", lg2::hex, msg.cmd);
+    lg2::info("  CC    : {CC}", "CC", lg2::hex, msg.completionCode);
+    if (!msg.data.empty())
+    {
+        dumpBytes(msg.data.data(), msg.data.size(), "Data");
+    }
 }
 
 } // namespace debug

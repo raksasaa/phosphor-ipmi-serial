@@ -15,7 +15,7 @@ project(
 conf_data = configuration_data()
 conf_data.set('TERMINAL_MODE', get_option('terminal_mode').enabled())
 conf_data.set('BASIC_MODE', get_option('basic_mode').enabled())
-conf_data.set('SERIAL_DEVICE', get_option('serial-device'))
+conf_data.set('SERIAL_DEVICE', '"' + get_option('serial-device') + '"')
 configure_file(
     output: 'config.h',
     configuration: conf_data,
