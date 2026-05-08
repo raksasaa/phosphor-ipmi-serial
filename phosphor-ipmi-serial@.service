@@ -1,0 +1,25 @@
+[Unit]
+Description=Serial IPMI daemon on %I
+After=phosphor-ipmi-host.service
+Requires=phosphor-ipmi-host.service
+After=sys-devices-platform-soc-*.device
+Conflicts=obmc-console@%i.service
+
+[Service]
+ExecStart=/usr/bin/serialipmid -d /dev/%I -b 115200 -m terminal -c serial0
+SyslogIdentifier=serialipmid-%I
+Restart=always
+RestartSec=5
+RuntimeDirectory=ipmi
+RuntimeDirectoryPreserve=yes
+StateDirectory=ipmi
+
+# Security hardening
+ProtectSystem=full
+ProtectHome=yes
+PrivateNetwork=no
+NoNewPrivileges=yes
+
+[Install]
+DefaultInstance=ttyAMA1
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+option('serial-device', type: 'string', value: '/dev/ttyS0', description: 'UART device')
+option('tests', type: 'feature', value: 'disabled', description: 'Build tests')
+option('terminal_mode', type: 'feature', value: 'enabled',
+       description: 'Enable Terminal Mode parser')
+option('basic_mode', type: 'feature', value: 'enabled',
+       description: 'Enable Basic Mode parser')

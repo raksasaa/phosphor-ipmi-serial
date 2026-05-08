@@ -1,0 +1,8 @@
+build/
+builddir/
+subprojects/CLI11/
+subprojects/gtest/
+subprojects/googletest-*/
+*.o
+*.d
+compile_commands.json
