@@ -123,6 +123,7 @@ std::vector<uint8_t> Parser::encodeResponse(const std::vector<uint8_t>& payload)
 {
     std::vector<uint8_t> out;
     out.push_back(BMC_START);
+    
     for (const auto& byte : payload) {
         switch (byte) {
         case BMC_START:
@@ -136,6 +137,7 @@ std::vector<uint8_t> Parser::encodeResponse(const std::vector<uint8_t>& payload)
             out.push_back(byte);
         }
     }
+    
     out.push_back(BMC_STOP);
     return out;
 }

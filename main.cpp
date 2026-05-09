@@ -181,7 +181,8 @@ int main(int argc, char** argv)
         auto parser = serialipmi::parser::createParser(protocolMode);
         auto handler = std::make_shared<serialipmi::message::Handler>(
             uartChan,
-            std::shared_ptr<serialipmi::parser::IParser>(std::move(parser)));
+            std::shared_ptr<serialipmi::parser::IParser>(std::move(parser)),
+            channel);
 
         auto& loop = serialipmi::eventloop::EventLoop::getInstance(
             *g_sdBus, *uartChan, handler);

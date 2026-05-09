@@ -18,7 +18,7 @@ TEST(MessageHandler, LocalCommandExecution) {
     inMsg.data = {0x0E};
 
     auto handler = std::make_shared<serialipmi::message::Handler>(
-        nullptr, parser);
+        nullptr, parser, "test");
 
     handler->processIncoming(inMsg);
     auto resp = handler->getResponse();
@@ -41,7 +41,7 @@ TEST(MessageHandler, NonLocalCommandReturnsNoResponse) {
     inMsg.lun = 0;
 
     auto handler = std::make_shared<serialipmi::message::Handler>(
-        nullptr, parser);
+        nullptr, parser, "test2");
 
     handler->processIncoming(inMsg);
     auto resp = handler->getResponse();
@@ -62,7 +62,7 @@ TEST(MessageHandler, GetChannelAuthCap) {
     inMsg.data = {0x0E, 0x04};
 
     auto handler = std::make_shared<serialipmi::message::Handler>(
-        nullptr, parser);
+        nullptr, parser, "test3");
 
     handler->processIncoming(inMsg);
     auto resp = handler->getResponse();
@@ -87,7 +87,7 @@ TEST(MessageHandler, ActivateSession) {
     inMsg.data = {0x01, 0x00, 0x00, 0x00};
 
     auto handler = std::make_shared<serialipmi::message::Handler>(
-        nullptr, parser);
+        nullptr, parser, "test4");
 
     handler->processIncoming(inMsg);
     auto resp = handler->getResponse();
